@@ -1,8 +1,10 @@
-package com.example.projectpraktikum;
+package com.example.projectpraktikum.view.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.projectpraktikum.R;
 
 import java.util.ArrayList;
 

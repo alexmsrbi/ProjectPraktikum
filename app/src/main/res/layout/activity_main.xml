@@ -7,16 +7,17 @@
     android:layout_height="match_parent"
     android:background="@android:color/holo_blue_dark"
     android:orientation="vertical"
-    tools:context=".MainActivity">
-    <RelativeLayout
+    tools:context=".view.activity.MainActivity">
+    <FrameLayout
         android:id="@+id/homeContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1">
 
-    </RelativeLayout>
+    </FrameLayout>
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"
+        android:background="@color/cardview_light_background"
         android:layout_height="wrap_content"
         app:menu="@menu/menu_bottomnav"/>
 

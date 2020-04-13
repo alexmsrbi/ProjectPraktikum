@@ -1,4 +1,4 @@
-package com.example.projectpraktikum;
+package com.example.projectpraktikum.adapter;
 
 import android.content.Context;
 import android.util.Log;
@@ -14,18 +14,18 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.example.projectpraktikum.R;
+import com.example.projectpraktikum.model.home.HomeResult;
 
 import java.util.ArrayList;
 
 public class AppAdapter extends RecyclerView.Adapter<AppAdapter.ViewHolder> {
     private static final String TAG = "AppAdapter";
-    private ArrayList<String> name = new ArrayList<>();
-    private ArrayList<String> gambar =  new ArrayList<>();
+    private static String TRENDING_URL = "https://api.tenor.com/v1/trending?key=3V1YT94GM0ZD";
+    private ArrayList<HomeResult> homeResults = new ArrayList<>();
     private Context context;
 
-    public AppAdapter(ArrayList<String> name, ArrayList<String> gambar, Context context) {
-        this.name = name;
-        this.gambar = gambar;
+    public AppAdapter(Context context) {
         this.context = context;
     }
 
@@ -36,28 +36,29 @@ public class AppAdapter extends RecyclerView.Adapter<AppAdapter.ViewHolder> {
         return new ViewHolder(view);
     }
 
+    public set
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         Log.d(TAG,"onBindViewHolder : called");
         RequestOptions requestOptions = new RequestOptions()
                 .placeholder(R.drawable.ic_launcher_background);
         Glide.with(context)
-                .load(gambar.get(position))
+                .load(TRENDING_URL+homeResults.get(position))
                 .apply(requestOptions)
                 .into(holder.ivImage);
-        holder.tvTitle.setText(name.get(position));
+        holder.tvTitle.setText(homeResults.get(position).getTitle());
         holder.ivImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d(TAG,"onCLick: clicked on "+name.get(position));
-                Toast.makeText(context,name.get(position), Toast.LENGTH_SHORT).show();
+                Log.d(TAG,"onCLick: clicked on "+homeResults.get(position));
+                Toast.makeText(context,homeResults.get(position).getMedia(), Toast.LENGTH_SHORT).show();
             }
         });
     }
 
     @Override
     public int getItemCount() {
-        return gambar.size();
+        return homeResults.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
