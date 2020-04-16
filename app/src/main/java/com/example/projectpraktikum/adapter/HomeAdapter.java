@@ -19,14 +19,20 @@ import com.example.projectpraktikum.model.home.HomeResult;
 
 import java.util.ArrayList;
 
-public class AppAdapter extends RecyclerView.Adapter<AppAdapter.ViewHolder> {
-    private static final String TAG = "AppAdapter";
+public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
+    private static final String TAG = "HomeAdapter";
     private static String TRENDING_URL = "https://api.tenor.com/v1/trending?key=3V1YT94GM0ZD";
     private ArrayList<HomeResult> homeResults = new ArrayList<>();
     private Context context;
 
-    public AppAdapter(Context context) {
+    public HomeAdapter(Context context) {
         this.context = context;
+    }
+
+    public void setData(ArrayList<HomeResult> item){
+        homeResults.clear();
+        homeResults.addAll(item);
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -36,14 +42,13 @@ public class AppAdapter extends RecyclerView.Adapter<AppAdapter.ViewHolder> {
         return new ViewHolder(view);
     }
 
-    public set
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         Log.d(TAG,"onBindViewHolder : called");
         RequestOptions requestOptions = new RequestOptions()
                 .placeholder(R.drawable.ic_launcher_background);
         Glide.with(context)
-                .load(TRENDING_URL+homeResults.get(position))
+                .load(TRENDING_URL+homeResults.get(position).getMedia())
                 .apply(requestOptions)
                 .into(holder.ivImage);
         holder.tvTitle.setText(homeResults.get(position).getTitle());
@@ -51,7 +56,6 @@ public class AppAdapter extends RecyclerView.Adapter<AppAdapter.ViewHolder> {
             @Override
             public void onClick(View v) {
                 Log.d(TAG,"onCLick: clicked on "+homeResults.get(position));
-                Toast.makeText(context,homeResults.get(position).getMedia(), Toast.LENGTH_SHORT).show();
             }
         });
     }
