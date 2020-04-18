@@ -6,7 +6,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ApiHome {
     private Retrofit retrofit;
     public HomeRepository getApiHome(){
-        String BASE_URL = "https://api.tenor.com/v1";
+        String BASE_URL = "https://api.tenor.com";
         if (retrofit == null){
             retrofit = new Retrofit
                     .Builder()

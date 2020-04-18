@@ -10,6 +10,8 @@ import android.view.View;
 
 import com.example.projectpraktikum.R;
 import com.example.projectpraktikum.view.fragment.HomeFragment;
+import com.example.projectpraktikum.view.fragment.SearchFragment;
+import com.example.projectpraktikum.view.fragment.UserFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
@@ -35,12 +37,17 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch (menuItem.getItemId()){
             case R.id.menu_home:
+                selectedFragment = new HomeFragment();
                 loadFragment(selectedFragment);
                 break;
+
             case R.id.menu_search:
+                selectedFragment = new SearchFragment();
                 loadFragment(selectedFragment);
                 break;
+
             case R.id.menu_user:
+                selectedFragment = new UserFragment();
                 loadFragment(selectedFragment);
                 break;
         }
