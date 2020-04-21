@@ -20,7 +20,6 @@ import java.util.ArrayList;
 
 public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
     private static final String TAG = "HomeAdapter";
-    private static String TRENDING_URL = "https://media.tenor.com/image/";
     private ArrayList<HomeResult> homeResults = new ArrayList<>();
     private Context context;
 
@@ -47,7 +46,6 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
         Glide.with(context)
                 .load(homeResults.get(position).getMedia().get(0).getGif().getUrl())
                 .into(holder.ivImage);
-        holder.tvTitle.setText(homeResults.get(position).getTitle());
         holder.ivImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -63,12 +61,10 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
 
     public class ViewHolder extends RecyclerView.ViewHolder{
         ImageView ivImage;
-        TextView tvTitle;
 
         public ViewHolder(View view) {
             super(view);
             this.ivImage = view.findViewById(R.id.ivIcon);
-            this.tvTitle = view.findViewById(R.id.tvJudul);
         }
     }
 }

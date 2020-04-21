@@ -18,9 +18,6 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
-    private static final String TAG = "MainActivity";
-    private static final int NUM_COLUMNS = 2;
-    private ArrayList<String> gambar = new ArrayList<>();
     private BottomNavigationView bottomNavigationView;
     private Fragment selectedFragment = new HomeFragment();
     @Override
@@ -30,6 +27,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
         bottomNavigationView = findViewById(R.id.home_bottom_nav);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
+        loadFragment(selectedFragment);
 
     }
 
