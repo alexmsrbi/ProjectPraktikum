@@ -6,28 +6,27 @@ import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.example.projectpraktikum.R;
+import com.example.projectpraktikum.Session;
 import com.example.projectpraktikum.view.fragment.HomeFragment;
 import com.example.projectpraktikum.view.fragment.SearchFragment;
 import com.example.projectpraktikum.view.fragment.UserFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import java.util.ArrayList;
-
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
     private BottomNavigationView bottomNavigationView;
     private Fragment selectedFragment = new HomeFragment();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         bottomNavigationView = findViewById(R.id.home_bottom_nav);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
         loadFragment(selectedFragment);
+
 
     }
 
@@ -55,6 +54,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
     private boolean loadFragment(Fragment selectedFragment) {
         if (selectedFragment != null){
+            Session.getUser(getBaseContext());
             getSupportFragmentManager()
                     .beginTransaction()
                     .replace(R.id.homeContainer,selectedFragment)

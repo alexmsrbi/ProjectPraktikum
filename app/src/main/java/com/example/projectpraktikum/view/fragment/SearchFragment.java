@@ -55,8 +55,8 @@ public class SearchFragment extends Fragment {
         searchAdapter = new SearchAdapter(getContext());
         searchAdapter.notifyDataSetChanged();
 
-        rvSearchDiscover = view.findViewById(R.id.rvMain);
-        rvSearchDiscover.setLayoutManager(new StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL));
+        rvSearchDiscover = view.findViewById(R.id.rvSearch);
+        rvSearchDiscover.setLayoutManager(new StaggeredGridLayoutManager(2,LinearLayoutManager.VERTICAL));
 
         searchViewModel = new ViewModelProvider(this).get(SearchViewModel.class);
         searchViewModel.setSearchDiscover();
